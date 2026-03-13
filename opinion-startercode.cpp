@@ -60,7 +60,7 @@ int get_majority_friend_opinions(int node)
     for(int j=0; j<total_nodes; j++)
     {
         // check if j is a neighbor of node
-        if(adj[node][j] == 1)
+        if(adj[j][node] == 1)
         {
             // count opinions of neighbors
             // if opinion of neighbor is 1, add to count, else subtract from count
@@ -115,11 +115,13 @@ int main() {
     while (opinions_changed && iteration < max_iterations) 
     {
         opinions_changed = update_opinions();
-        if (opinions_changed) {
+        if (!opinions_changed) {
+            break; 
+        }
             iteration++;
             cout << "Iteration " << iteration << ": fraction of 1's = " 
                  << calculate_fraction_of_ones() << endl;
-        }
+        
     }
 
     ////////////////////////////////////////////////////////
